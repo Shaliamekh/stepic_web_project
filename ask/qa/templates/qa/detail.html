@@ -16,5 +16,11 @@
 {% else %}
 <p>There is no answers yet!</p>
 {% endif %}
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>{{ form.as_table }}</table>
+        <button type="submit">Ответить</button>
+    </form>
 </body>
 </html>

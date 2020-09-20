@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Asking Form</title>
+</head>
+<body>
+    <h1>Задай вопрос</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>{{ form.as_table }}</table>
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>

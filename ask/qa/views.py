@@ -39,4 +39,20 @@ def popular(request):
 def detail(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     answers = question.answer_set.all()
-    return render(request, 'qa/detail.html', {'question': question, 'answers': answers})
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save()
+            return HttpResponseRedirect(reverse('q_detail', args=(question.id,)))
+    else:
+        form = AnswerForm(initial={'question': question})
+    return render(request, 'qa/detail.html', {'question': question, 'answers': answers, 'form': form})
+
+def ask(request):
+    if request.method == 'POST':
+        form = AskForm(request.POST)
+        if form.is_valid():
+            question = form.save()
+            return HttpResponseRedirect(reverse('q_detail', args=(question.id,)))
+    else:
+        form = AskForm()

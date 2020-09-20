@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse, get_object_or_404, Http404
+from django.shortcuts import render, reverse, get_object_or_404, Http404, HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage
 from django.http import HttpResponse
 from .models import QuestionManager, Question, Answer
@@ -57,3 +57,6 @@ def ask(request):
             return HttpResponseRedirect(reverse('q_detail', args=(question.id,)))
     else:
         form = AskForm()
+    return render(request, 'qa/ask.html', {'form': form})
+
+

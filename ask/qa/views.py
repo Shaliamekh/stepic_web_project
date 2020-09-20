@@ -2,6 +2,7 @@ from django.shortcuts import render, reverse, get_object_or_404, Http404
 from django.core.paginator import Paginator, EmptyPage
 from django.http import HttpResponse
 from .models import QuestionManager, Question, Answer
+from .forms import AskForm, AnswerForm
 
 
 def test(request, *args, **kwargs):
